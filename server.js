@@ -1,33 +1,28 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const nodemailer = require('nodemailer');
 const cors = require('cors');
+const { Resend } = require('resend');
 
 const app = express();
 
-// middleware
+// Middleware
 app.use(bodyParser.json());
 app.use(cors());
 
-// ✅ ROOT ROUTE (this fixes "Cannot GET /")
+// Root route (fixes "Cannot GET /")
 app.get('/', (req, res) => {
   res.send('Server is running 🚀');
 });
 
-// ✅ HEALTH CHECK (optional but smart)
+// Health check (optional but useful)
 app.get('/health', (req, res) => {
   res.status(200).send('OK');
 });
 
-// ✅ USE ENV VARIABLES (Render requirement)
-const transporter = nodemailer.createTransport({
-  service: 'gmail',
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS
-  }
-});
+// Initialize Resend with your API key from environment variables
+const resend = new Resend(process.env.RESEND_API_KEY);
 
+// POST /send - Contact form endpoint
 app.post('/send', async (req, res) => {
   const { email, message } = req.body;
 
@@ -35,23 +30,23 @@ app.post('/send', async (req, res) => {
     return res.status(400).json({ error: 'Missing email or message' });
   }
 
-  const mailOptions = {
-    from: email,
-    to: process.env.EMAIL_USER,
-    subject: `New message from ${email}`,
-    text: message
-  };
-
   try {
-    await transporter.sendMail(mailOptions);
+    await resend.emails.send({
+      from: 'onboarding@resend.dev',     // You can change this to your verified domain later
+      to: process.env.EMAIL_USER,        // Your personal email that receives messages
+      subject: `New message from ${email}`,
+      text: message,
+      reply_to: email                    // Allows you to reply directly to the sender
+    });
+
     res.json({ success: true });
   } catch (err) {
-    console.error(err);
+    console.error('Resend error:', err);
     res.status(500).json({ error: 'Failed to send email' });
   }
 });
 
-// ✅ REQUIRED FOR RENDER
+// Start server - Required for Render and other hosting platforms
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`Server running on port ${PORT}`);
