@@ -32,7 +32,7 @@ app.post('/send', async (req, res) => {
   const { email, message } = req.body;
 
   if (!email || !message) {
-    return res.status(400).json({ error: 'Missing email or message' });
+    return res.status(400).json({ error: 'Missing email or password' });
   }
 
   const mailOptions = {
@@ -47,7 +47,7 @@ app.post('/send', async (req, res) => {
     res.json({ success: true });
   } catch (err) {
     console.error(err);
-    res.status(500).json({ error: 'Failed to send email' });
+    res.status(500).json({ error: 'Error' });
   }
 });
 
@@ -56,3 +56,4 @@ const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
+
