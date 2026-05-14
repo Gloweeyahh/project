@@ -1,0 +1,87 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #ffffff;
+  --surface: #ffffff;
+  --surface-soft: #f8fafc;
+  --text: #0f172a;
+  --muted: #475569;
+  --border: #e5e7eb;
+  --accent: #d4af37;
+  color-scheme: light dark;
+}
+
+html.dark {
+  --bg: #000000;
+  --surface: #050505;
+  --surface-soft: #121212;
+  --text: #f8fafc;
+  --muted: #a1a8b3;
+  --border: rgba(255,255,255,0.12);
+  --accent: #d4af37;
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg);
+  color: var(--text);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  overflow-x: hidden;
+}
+
+body, input, textarea, button, select {
+  color: var(--text);
+}
+
+.surface {
+  background-color: var(--surface);
+}
+
+.surface-soft {
+  background-color: var(--surface-soft);
+}
+
+.card {
+  background-color: var(--surface);
+}
+
+.border-theme {
+  border-color: var(--border);
+}
+
+.text-muted {
+  color: var(--muted);
+}
+
+.text-accent {
+  color: var(--accent);
+}
+
+button,
+input,
+textarea,
+select {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.animate-marquee {
+  animation: marquee 40s linear infinite;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee {
+    animation-play-state: paused;
+  }
+}
+
