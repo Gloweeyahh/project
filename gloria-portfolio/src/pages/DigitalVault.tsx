@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import BackButton from "../components/BackButton";
+
 
 const assets = [
   {
@@ -37,6 +39,9 @@ export default function DigitalVault() {
   return (
     <div className="min-h-screen bg-white dark:bg-[#0A0A0A] text-gray-900 dark:text-white px-6 py-24">
       <div className="max-w-6xl mx-auto">
+        <div className="mb-6">
+          <BackButton />
+        </div>
         <p className="uppercase tracking-[0.3em] text-[#D4AF37] text-sm">
           Private Vault
         </p>

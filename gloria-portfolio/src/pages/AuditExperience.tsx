@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import BackButton from "../components/BackButton";
 
 const checks = [
   'Hero communicates offer in 3 seconds',
@@ -12,9 +13,13 @@ const checks = [
 export default function AuditExperience() {
   return (
     <main className="min-h-screen bg-white dark:bg-[#0A0A0A] text-gray-900 dark:text-white px-6 py-24">
+      <div className="max-w-6xl mx-auto mb-6">
+        <BackButton />
+      </div>
       <motion.h1 initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-6xl font-black mb-10 text-gray-900 dark:text-white">
         Premium Website Audit
       </motion.h1>
+
 
       <div className="grid gap-6">
         {checks.map((item, i) => (

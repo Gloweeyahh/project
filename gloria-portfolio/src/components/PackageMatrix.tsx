@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const packages = [
   {
     name: "Starter",
@@ -23,18 +25,20 @@ export default function PackageMatrix() {
 
       <div className="grid md:grid-cols-3 gap-8">
         {packages.map((pkg) => (
-          <div
+          <Link
             key={pkg.name}
-            className="p-10 rounded-3xl bg-white dark:bg-slate-950 backdrop-blur-xl border border-gray-200/50 dark:border-white/20 hover:border-amber-400/80 shadow-xl dark:shadow-black/50"
+            to={`/contact?plan=${encodeURIComponent(pkg.name)}`}
+            className="p-10 rounded-3xl bg-white dark:bg-slate-950 backdrop-blur-xl border border-gray-200/50 dark:border-white/20 hover:border-amber-400/80 shadow-xl dark:shadow-black/50 transition hover:-translate-y-1"
           >
             <h3 className="text-3xl font-bold mb-4">{pkg.name}</h3>
             <p className="text-[#D4AF37] text-2xl mb-6">{pkg.price}</p>
-            <ul className="space-y-3 text-gray-700 dark:text-zinc-300">
+            <ul className="space-y-3 text-gray-700 dark:text-zinc-300 mb-6">
               {pkg.features.map((f) => (
                 <li key={f}>• {f}</li>
               ))}
             </ul>
-          </div>
+            <p className="text-sm font-semibold text-[#D4AF37]">Start your brief with this tier →</p>
+          </Link>
         ))}
       </div>
     </section>

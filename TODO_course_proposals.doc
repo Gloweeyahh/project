@@ -1,0 +1,25 @@
+Course Proposal Listing
+
+Note: This document currently contains the list of routed pages in the project where a “course/proposal”-related page exists. If you meant actual course objects/data from a specific module (e.g., `src/data/*` or `src/content/*`), point me to that file/module name and I will regenerate this doc with the exact course titles and their full content.
+
+1) /proposals
+   File: gloria-portfolio/src/pages/Proposals.tsx
+
+2) /proposal/:slug
+   File: gloria-portfolio/src/pages/ProposalPage.tsx
+
+3) /courses
+   File: gloria-portfolio/src/pages/CourseCommerce.tsx
+
+4) (Potentially course-related) /student
+   File: gloria-portfolio/src/pages/StudentPortal.tsx
+
+5) (Potentially course-related) /checkout
+   File: gloria-portfolio/src/pages/CheckoutPage.tsx
+
+6) /payment-callback
+   File: gloria-portfolio/src/pages/PaymentCallback.tsx
+
+7) /downloads
+   File: gloria-portfolio/src/pages/DownloadCenter.tsx
+

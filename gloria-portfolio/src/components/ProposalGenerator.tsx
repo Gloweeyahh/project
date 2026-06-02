@@ -1,40 +1,67 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
+import { Link } from "react-router-dom";
+import { proposals } from "../data/proposals";
 
 export default function ProposalGenerator() {
-  const [service, setService] = useState("Landing Page");
-  const [generated, setGenerated] = useState(false);
+  const [selectedSlug, setSelectedSlug] = useState(proposals[0]?.slug || "");
+  const selectedProposal = useMemo(
+    () => proposals.find((proposal) => proposal.slug === selectedSlug) ?? proposals[0],
+    [selectedSlug]
+  );
 
   return (
-    <section className="py-40 px-8 bg-white dark:bg-black">
-      <h2 className="text-6xl font-bold mb-10 text-gray-900 dark:text-white">Instant Proposal Draft</h2>
-
-      <select
-        value={service}
-        onChange={(e) => setService(e.target.value)}
-        className="p-4 rounded-2xl bg-white/90 dark:bg-slate-950 border border-gray-200/50 dark:border-white/20 shadow-sm"
-      >
-        <option>Landing Page</option>
-        <option>Course Platform</option>
-        <option>Business Website</option>
-        <option>SaaS Dashboard</option>
-      </select>
-
-      <button
-        onClick={() => setGenerated(true)}
-        className="ml-4 bg-[#D4AF37] text-black px-6 py-4 rounded-2xl font-bold"
-      >
-        Generate
-      </button>
-
-      {generated && (
-        <div className="mt-10 p-8 rounded-3xl bg-white/95 dark:bg-slate-950 backdrop-blur-xl border border-amber-200/60 dark:border-amber-500/50 shadow-2xl">
-          <h3 className="text-3xl font-bold mb-4 text-gray-900 dark:text-white">{service} Proposal</h3>
-          <p className="text-gray-800 dark:text-zinc-200 leading-8">
-            Scope includes premium UI design, frontend engineering,
-            performance optimization, responsive systems, and conversion-focused interactions.
+    <section className="py-24 px-6 lg:px-16 bg-white dark:bg-black text-slate-900 dark:text-slate-100">
+      <div className="max-w-6xl mx-auto">
+        <div className="mb-12">
+          <p className="text-sm uppercase tracking-[0.35em] text-[#D4AF37]">Proposal selector</p>
+          <h2 className="mt-4 text-5xl md:text-6xl font-bold">Choose the proposal that matches your project.</h2>
+          <p className="mt-6 text-lg text-slate-600 dark:text-slate-300 leading-8 max-w-3xl">
+            Use the dropdown to select a proposal type, then review the corresponding scope card and book a consultation.
           </p>
         </div>
-      )}
+
+        <div className="flex flex-col gap-8 lg:flex-row lg:items-start lg:justify-between">
+          <label className="w-full lg:w-1/3 block">
+            <span className="text-sm uppercase tracking-[0.35em] text-[#D4AF37]">Project type</span>
+            <select
+              value={selectedSlug}
+              onChange={(event) => setSelectedSlug(event.target.value)}
+              className="mt-4 w-full rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-100 p-4 shadow-sm"
+            >
+              {proposals.map((proposal) => (
+                <option key={proposal.slug} value={proposal.slug}>
+                  {proposal.title}
+                </option>
+              ))}
+            </select>
+          </label>
+
+          <div className="rounded-[2rem] border border-slate-200 dark:border-slate-800 bg-slate-50/95 dark:bg-slate-950/90 p-8 shadow-xl w-full lg:w-2/3">
+            <p className="text-xs uppercase tracking-[0.3em] text-[#D4AF37]">Selected proposal</p>
+            <h3 className="mt-4 text-3xl font-semibold text-slate-900 dark:text-white">{selectedProposal.title}</h3>
+            <p className="mt-4 text-slate-600 dark:text-slate-300 leading-7">{selectedProposal.summary}</p>
+            <div className="mt-6 space-y-4">
+              {selectedProposal.features.map((feature) => (
+                <div
+                  key={feature}
+                  className="rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-5"
+                >
+                  <p className="font-semibold text-slate-900 dark:text-white">{feature}</p>
+                </div>
+              ))}
+            </div>
+            <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+              <p className="text-slate-700 dark:text-slate-300 leading-7">{selectedProposal.objective}</p>
+              <Link
+                to={`/proposal/${selectedProposal.slug}`}
+                className="inline-flex items-center justify-center rounded-full bg-black text-white px-6 py-4 text-sm font-semibold transition hover:bg-slate-800"
+              >
+                Show full proposal
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
   );
 }

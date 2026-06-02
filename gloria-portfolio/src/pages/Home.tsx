@@ -1,5 +1,6 @@
-import Nav from "../components/Nav";
 import { Link } from "react-router-dom";
+import BackButton from "../components/BackButton";
+
 import Testimonials from "../components/Testimonials";
 import SkillsStrip from "../components/SkillsStrip";
 import HireStrip from "../components/HireStrip";
@@ -15,8 +16,11 @@ import InquiryInsights from "../components/InquiryInsights";
 export default function Home() {
   return (
     <>
-      <Nav />
+      <div className="max-w-5xl mx-auto px-6 pt-10">
+        <BackButton />
+      </div>
       <section className="min-h-screen pt-24 flex items-center justify-center bg-white dark:bg-black">
+
         <div className="text-center">
           <h1 className="text-7xl md:text-9xl font-bold leading-tight text-gray-900 dark:text-white">
             Gloria Emeka
@@ -47,9 +51,7 @@ export default function Home() {
         <Link to="/courses" className="px-10 py-5 bg-yellow-400 text-black rounded-2xl font-bold shadow-xl hover:shadow-yellow-400/50 hover:scale-105 transition">
           Explore Courses
         </Link>
-        <Link to="/checkout" className="px-10 py-5 border border-gray-300 dark:border-white/20 bg-white/90 dark:bg-slate-950 text-gray-900 dark:text-white rounded-2xl font-bold backdrop-blur-xl hover:bg-white/70 dark:hover:bg-white/10 transition">
-          Instant Checkout
-        </Link>
+
         <Link to="/vault" className="px-10 py-5 border border-gray-300 dark:border-white/20 bg-white/90 dark:bg-slate-950 text-gray-900 dark:text-white rounded-2xl font-bold backdrop-blur-xl hover:bg-white/70 dark:hover:bg-white/10 transition">
           Enter Vault
         </Link>

@@ -1,0 +1,23 @@
+Course Platform Courses + Content
+
+Source of course/proposal data:
+- gloria-portfolio/src/data/proposals.ts
+
+Important: “Course Platform” in this repo corresponds to slug:
+- course-platform
+
+====================================
+COURSE: Course Platform
+- slug: course-platform
+- title: Course Platform
+- summary: A polished course platform to showcase curriculum, enroll learners, and deliver premium online education.
+- overview: A complete course platform experience with student onboarding, enrollment flows, and course discovery built for trust.
+- objective: Create a compelling learning environment that turns prospects into paying students and long-term learners.
+
+- features:
+  • Course catalog and curriculum previews
+  • Secure checkout and enrollment flow
+  • Student progress and access sections
+  • Responsive learning experience
+  • Conversion-focused landing content
+

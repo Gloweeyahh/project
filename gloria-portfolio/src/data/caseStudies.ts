@@ -10,6 +10,7 @@ export const caseStudies = [
       { label: 'Drop-off', value: '-42%' },
     ],
     insight: 'Reducing friction unlocked trust instantly.',
+    disclaimer: 'This is the current public demo version of the build, not the original launched client site.',
   },
   {
     slug: 'ecommerce',
@@ -22,6 +23,7 @@ export const caseStudies = [
       { label: 'Checkout Speed', value: '2.1s' },
     ],
     insight: 'Story sells more than discounts.',
+    disclaimer: 'This is the current public demo version of the build, not the original launched client site.',
   },
   {
     slug: 'saas',
@@ -34,5 +36,6 @@ export const caseStudies = [
       { label: 'Retention', value: '+40%' },
     ],
     insight: 'Speed is product experience.',
+    disclaimer: 'This is the current public demo version of the build, not the original launched client site.',
   },
 ]

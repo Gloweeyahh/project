@@ -1,48 +1,57 @@
 export const projects = [
   {
-    slug: "fintech-trust-transformation",
+    slug: "fintech",
     title: "Fintech Trust Transformation",
-    category: "Fintech UX",
+    category: "fintech",
+    client: "ScaleUp Finance",
     problem: "Complex onboarding killed signups and trust.",
-    solution:
-      "Rebuilt the onboarding journey with trust layers, reduced fields, and micro-conversion checkpoints.",
+    solution: "Rebuilt the onboarding journey with trust layers, reduced fields, and micro-conversion checkpoints.",
     metrics: [
       { label: "Signup Lift", value: "+67%" },
       { label: "Dropoff Reduction", value: "-41%" },
       { label: "Time to Complete", value: "-58%" },
     ],
-    insight:
-      "Trust signals + progressive disclosure transformed abandonment into confidence.",
+    insight: "Trust signals + progressive disclosure transformed abandonment into confidence.",
+    siteUrl: "https://digital-ascension-group.netlify.app/",
+    siteLabel: "Live demo",
+    siteNote: "Current public demo version of this experience.",
+    caseRoute: "/case-study/fintech",
   },
   {
-    slug: "ecommerce-growth-engine",
+    slug: "ecommerce",
     title: "E-commerce Growth Engine",
-    category: "Conversion Design",
+    category: "ecommerce",
+    client: "Retail Pulse",
     problem: "Low AOV and high cart abandonment.",
-    solution:
-      "Redesigned product storytelling, pricing hierarchy, and checkout reassurance flow.",
+    solution: "Redesigned product storytelling, pricing hierarchy, and checkout reassurance flow.",
     metrics: [
       { label: "AOV Lift", value: "+32%" },
       { label: "Checkout Completion", value: "+26%" },
       { label: "Cart Drop", value: "-18%" },
     ],
-    insight:
-      "Narrative product pages doubled purchase confidence.",
+    insight: "Narrative product pages doubled purchase confidence.",
+    siteUrl: "https://www.glore-classique.store/",
+    siteLabel: "Live demo",
+    siteNote: "Current public demo version of this experience.",
+    caseRoute: "/case-study/ecommerce",
   },
   {
-    slug: "saas-performance-mastery",
+    slug: "saas",
     title: "SaaS Performance Mastery",
-    category: "Dashboard UX",
+    category: "saas",
+    client: "MetricFlow",
     problem: "Slow dashboards were killing retention.",
-    solution:
-      "Core Web Vitals rebuild + dashboard clarity architecture.",
+    solution: "Core Web Vitals rebuild + dashboard clarity architecture.",
     metrics: [
       { label: "Lighthouse", value: "100" },
       { label: "Retention", value: "+31%" },
       { label: "Load Speed", value: "-2.1s" },
     ],
-    insight:
-      "Performance speed became the retention moat.",
+    insight: "Performance speed became the retention moat.",
+    siteUrl: "https://dag-app.netlify.app/",
+    siteLabel: "Live demo",
+    siteNote: "Current public demo version of this experience.",
+    caseRoute: "/case-study/saas",
   },
 ];
 

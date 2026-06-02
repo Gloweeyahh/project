@@ -1,11 +1,14 @@
 import { useParams } from 'react-router-dom'
 import { caseStudies } from '../data/caseStudies'
+import { projects } from '../data/projects'
 import { motion } from 'framer-motion'
+import BackButton from "../components/BackButton";
 
 export default function CaseStudyPage() {
   const { slug } = useParams()
 
   const caseData = caseStudies.find(c => c.slug === slug)
+  const project = projects.find(p => p.slug === slug)
 
   if (!caseData) {
     return <div className="text-gray-900 dark:text-white p-20">Case not found</div>
@@ -13,15 +16,22 @@ export default function CaseStudyPage() {
 
   return (
     <main className="min-h-screen bg-white dark:bg-[#0A0A0A] text-gray-900 dark:text-white px-6 py-24">
+      <div className="max-w-6xl mx-auto mb-6">
+        <BackButton />
+      </div>
 
       {/* TITLE */}
       <motion.h1
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
-        className="text-6xl font-black mb-10 text-gray-900 dark:text-white"
+        className="text-6xl font-black mb-6 text-gray-900 dark:text-white"
       >
         {caseData.title}
       </motion.h1>
+
+      <div className="max-w-3xl text-sm text-gray-500 dark:text-gray-400 italic mb-10">
+        {caseData.disclaimer}
+      </div>
 
       {/* PROBLEM / SOLUTION */}
       <div className="grid lg:grid-cols-2 gap-10 mb-16">
@@ -56,6 +66,19 @@ export default function CaseStudyPage() {
       <div className="max-w-xl text-gray-600 dark:text-gray-400 italic">
         {caseData.insight}
       </div>
+
+      {project?.siteUrl && (
+        <div className="mt-12 flex flex-col sm:flex-row gap-4">
+          <button
+            type="button"
+            onClick={() => window.open(project.siteUrl, '_blank', 'noopener,noreferrer')}
+            className="rounded-3xl bg-[#D4AF37] px-6 py-3 text-black font-bold hover:bg-yellow-500 transition"
+          >
+            Open Live Site
+          </button>
+          <p className="text-sm text-gray-500 dark:text-gray-400 mt-2 sm:mt-0">{project.siteNote}</p>
+        </div>
+      )}
 
     </main>
   )
