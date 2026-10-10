@@ -1,6 +1,7 @@
 [build]
   # Command intentionally left empty for CLI prebuilt deploys
-  command = ""
+  base = "gloria-portfolio"
+  command = "npm run build"
   publish = "dist"
   functions = "netlify/functions"
 
