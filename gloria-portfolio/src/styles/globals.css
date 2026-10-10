@@ -1,3 +1,5 @@
+@import "./portfolio.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -84,4 +86,3 @@ select {
     animation-play-state: paused;
   }
 }
-

@@ -1,6 +1,6 @@
 export const content = {
   name: "Gloria Emeka",
-  tagline: "Websites that make founders hire on instinct",
+  tagline: "Thoughtful interfaces. Built to work.",
   subtitle: "Front-End Developer • UI Engineer • Digital Educator",
   location: "Abuja, Nigeria — serving globally",
 
@@ -11,9 +11,9 @@ export const content = {
       desc: "Simplified onboarding + trust signals"
     },
     {
-      title: "E-commerce Growth Engine",
-      metric: "+32% AOV",
-      desc: "Checkout optimization + UX rewrite"
+      title: "Gloré Classique",
+      metric: "Live e-commerce storefront",
+      desc: "Product discovery, color variants, and cart interactions"
     },
     {
       title: "SaaS Performance Mastery",

@@ -1,6 +1,7 @@
 
 
 import BackButton from "../components/BackButton";
+import { Link } from "react-router-dom";
 
 const experience = [
 
@@ -36,9 +37,9 @@ const skills = [
 export default function Resume() {
   return (
     <>
-      <main className="min-h-screen bg-white dark:bg-black text-gray-900 dark:text-white px-6 py-24 lg:px-10">
+      <main id="main-content" className="resume-page min-h-screen bg-white dark:bg-black text-gray-900 dark:text-white px-6 py-24 lg:px-10">
         <div className="max-w-6xl mx-auto space-y-16">
-          <div className="mb-2">
+          <div className="mb-2 no-print">
             <BackButton />
           </div>
 
@@ -53,13 +54,13 @@ export default function Resume() {
                 </p>
               </div>
 
-              <a
-                href="/Gloria-Emeka-Resume.pdf"
-                download
-                className="inline-flex items-center justify-center rounded-3xl bg-[#D4AF37] px-8 py-4 font-bold text-black transition hover:bg-yellow-500"
+              <button
+                type="button"
+                onClick={() => window.print()}
+                className="no-print inline-flex items-center justify-center rounded-3xl bg-[#D4AF37] px-8 py-4 font-bold text-black transition hover:bg-yellow-500"
               >
-                Download PDF
-              </a>
+                Print / Save as PDF
+              </button>
             </div>
           </section>
 
@@ -97,24 +98,15 @@ export default function Resume() {
           </section>
 
           <section className="rounded-[2rem] border border-gray-200 dark:border-white/10 bg-slate-50 dark:bg-slate-950 p-12 shadow-2xl">
-            <h2 className="text-4xl font-black text-gray-900 dark:text-white">Resume highlights</h2>
-            <div className="mt-8 grid gap-6 md:grid-cols-3">
-              <Stat label="Years of experience" value="7+" />
-              <Stat label="Projects delivered" value="100+" />
-              <Stat label="Conversion boost" value="Avg +42%" />
+            <h2 className="text-4xl font-black text-gray-900 dark:text-white">Featured work: Gloré Classique</h2>
+            <p className="mt-6 text-gray-600 dark:text-gray-400">A live e-commerce storefront with product discovery, color variants, stock information, and cart interactions.</p>
+            <div className="mt-8 flex flex-wrap gap-6 no-print">
+              <Link to="/case-study/ecommerce" className="font-semibold underline underline-offset-4">Read the project story</Link>
+              <Link to="/contact?intent=hiring" className="font-semibold underline underline-offset-4">Discuss a role</Link>
             </div>
           </section>
         </div>
       </main>
     </>
-  );
-}
-
-function Stat({ label, value }: { label: string; value: string }) {
-  return (
-    <div className="rounded-3xl border border-gray-200 dark:border-white/10 bg-white dark:bg-slate-950 p-8 text-center shadow-lg">
-      <p className="text-sm uppercase tracking-[0.35em] text-gray-400 dark:text-gray-500">{label}</p>
-      <p className="mt-4 text-4xl font-black text-gray-900 dark:text-white">{value}</p>
-    </div>
   );
 }

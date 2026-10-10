@@ -31,7 +31,7 @@ export default function RecruiterMode() {
           <h2 className="text-2xl font-bold mt-8 mb-3">Key Results</h2>
           <ul className="list-disc ml-6">
             <li>+67% Fintech Conversions</li>
-            <li>+32% E-commerce AOV</li>
+            <li>Gloré Classique: live e-commerce storefront</li>
             <li>100 Lighthouse Performance</li>
           </ul>
 

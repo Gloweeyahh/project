@@ -19,20 +19,20 @@ export const projects = [
   },
   {
     slug: "ecommerce",
-    title: "E-commerce Growth Engine",
+    title: "Gloré Classique",
     category: "ecommerce",
-    client: "Retail Pulse",
-    problem: "Low AOV and high cart abandonment.",
-    solution: "Redesigned product storytelling, pricing hierarchy, and checkout reassurance flow.",
+    client: "Gloré Classique · E-commerce",
+    problem: "Make a curated bag collection easy to discover and shop on mobile.",
+    solution: "A branded storefront with product search, color variants, clear pricing, stock visibility, and cart interactions.",
     metrics: [
-      { label: "AOV Lift", value: "+32%" },
-      { label: "Checkout Completion", value: "+26%" },
-      { label: "Cart Drop", value: "-18%" },
+      { label: "Discovery", value: "Product search" },
+      { label: "Product detail", value: "Color variants" },
+      { label: "Shopping flow", value: "Add to cart" },
     ],
-    insight: "Narrative product pages doubled purchase confidence.",
-    siteUrl: "https://www.glore-classique.store/",
-    siteLabel: "Live demo",
-    siteNote: "Current public demo version of this experience.",
+    insight: "A consistent visual identity and clear product information support a confident shopping journey.",
+    siteUrl: "https://gloreclasique.netlify.app/",
+    siteLabel: "Visit live store",
+    siteNote: "Explore the live storefront. The preview shows the supplied mobile screenshot; prices and availability may change.",
     caseRoute: "/case-study/ecommerce",
   },
   {
@@ -54,4 +54,3 @@ export const projects = [
     caseRoute: "/case-study/saas",
   },
 ];
-
