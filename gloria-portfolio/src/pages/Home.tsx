@@ -3,23 +3,23 @@ import BackButton from "../components/BackButton";
 
 const strengths = [
   {
-    title: "Clear positioning",
-    text: "I help brands explain what they do, who they serve, and why it matters without the usual noise.",
+    title: "End-to-end delivery",
+    text: "I own frontend architecture, responsive UI, API integration, testing, deployment, and post-launch improvements.",
   },
   {
-    title: "Design that works",
-    text: "I bring together good visuals and practical product thinking so the experience feels premium and useful.",
+    title: "Design-minded engineering",
+    text: "My graphics-design background helps me translate ideas into accessible interfaces with clear layouts and reusable components.",
   },
   {
-    title: "Built with intent",
-    text: "Every interaction is shaped around making the product easier to understand and easier to trust.",
+    title: "Performance and reliability",
+    text: "I improve Core Web Vitals, test critical workflows, and handle loading, empty, and error states so products work beyond the happy path.",
   },
 ];
 
 const proofPoints = [
-  { value: "5+", label: "years building digital products" },
+  { value: "3+", label: "years of hands-on frontend experience" },
   { value: "20+", label: "production web apps and client projects" },
-  { value: "42%", label: "average performance gain across audited work" },
+  { value: "42%", label: "fewer Lighthouse performance issues across client projects" },
 ];
 
 const githubProjects = [
@@ -62,15 +62,15 @@ export default function Home() {
       <section className="min-h-screen pt-24 flex items-center justify-center bg-white dark:bg-black">
         <div className="max-w-5xl mx-auto px-6 text-center">
           <p className="text-sm uppercase tracking-[0.35em] text-gray-400 dark:text-gray-500">
-            DESIGNER • FRONTEND ENGINEER • PRODUCT THINKER
+            FRONTEND DEVELOPER • REACT & TYPESCRIPT • DESIGN-MINDED ENGINEER
           </p>
 
           <h1 className="mt-6 text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight text-gray-900 dark:text-white">
-            Hi, I’m Gloria Emeka. I design and build clean websites that look great and immediately show your users why your product matters.
+            Hi, I’m Gloria Emeka. I build responsive, accessible web applications.
           </h1>
 
           <p className="mt-6 max-w-3xl mx-auto text-lg text-gray-600 dark:text-gray-300">
-            I help founders and teams turn ideas into websites and digital experiences that feel clear, credible, and easy to trust.
+            Frontend engineer with 3+ years of hands-on experience and 20+ delivered web applications and client projects. I work with React, TypeScript, JavaScript, and Node.js—from interface design and API integration to testing, performance, and launch. Based in Abuja, Nigeria.
           </p>
 
           <div className="mt-6 flex flex-wrap items-center justify-center gap-2 text-xs font-medium uppercase tracking-[0.2em] text-gray-500 dark:text-gray-400">
@@ -86,15 +86,22 @@ export default function Home() {
               View projects
             </Link>
             <a
-              href="/Gloria_Emeka_Final_Optimized_CV.docx"
-              download
+              href="/Gloria_Emeka_CV.pdf"
+              download="Gloria_Emeka_CV.pdf"
               className="inline-flex items-center justify-center rounded-2xl border border-gray-300 dark:border-white/20 bg-white dark:bg-slate-950 px-6 py-3 font-bold text-gray-900 dark:text-white transition hover:border-yellow-400"
             >
-              Download CV
+              Download CV (PDF)
             </a>
             <Link to="/contact" className="inline-flex items-center justify-center rounded-2xl border border-gray-300 dark:border-white/20 bg-transparent px-6 py-3 font-bold text-gray-900 dark:text-white transition hover:border-yellow-400">
               Book a call
             </Link>
+          </div>
+
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-4 text-sm font-medium text-gray-600 dark:text-gray-300" aria-label="Find what you need">
+            <Link to="/resume" className="transition hover:text-yellow-600 dark:hover:text-yellow-400">For recruiters: experience & skills</Link>
+            <Link to="/contact" className="transition hover:text-yellow-600 dark:hover:text-yellow-400">For hirers: discuss a role or project</Link>
+            <Link to="/work" className="transition hover:text-yellow-600 dark:hover:text-yellow-400">For teams: explore my work</Link>
+            <Link to="/services" className="transition hover:text-yellow-600 dark:hover:text-yellow-400">For clients: services</Link>
           </div>
 
           <div className="mt-8 flex flex-wrap items-center justify-center gap-4 text-sm text-gray-600 dark:text-gray-300">
@@ -125,7 +132,7 @@ export default function Home() {
         <div className="mb-12 max-w-3xl">
           <p className="text-sm uppercase tracking-[0.35em] text-[#D4AF37]">GitHub showcase</p>
           <h2 className="mt-4 text-3xl md:text-4xl font-black text-gray-900 dark:text-white">
-            A few repositories that show how I build, practical, intentional, and focused on solving real-world problems.
+            Explore my code, live applications, and the problems they solve.
           </h2>
         </div>
 
@@ -176,7 +183,7 @@ export default function Home() {
         <div className="mb-12 max-w-2xl">
           <p className="text-sm uppercase tracking-[0.35em] text-[#D4AF37]">Why work with me</p>
           <h2 className="mt-4 text-3xl md:text-4xl font-black text-gray-900 dark:text-white">
-            Because I handle everything from initial strategy and design to final code, your project stays cohesive, with no lost-in-translation moments from start to finish.
+            Frontend engineering with a designer’s eye and ownership from idea to launch.
           </h2>
         </div>
 

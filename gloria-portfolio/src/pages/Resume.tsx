@@ -5,13 +5,19 @@ import GlobalCTA from '../components/GlobalCTA'
 
 const experience = [
   {
-    period: "August 2024 – Present",
+    period: "February 2025 – Present",
+    role: "Frontend Developer & E-commerce Developer",
+    company: "Gloré Classique",
+    details: "Built and maintain a responsive fashion-accessories storefront with product variations, colour selection, stock indicators, order summaries, and a Paystack checkout connected to a serverless API."
+  },
+  {
+    period: "August 2023 – Present",
     role: "Independent Freelance Developer",
     company: "Self-employed",
     details: "Build and ship websites and digital experiences for clients, covering frontend architecture, responsive UI, testing, deployment, and follow-up fixes from start to finish."
   },
   {
-    period: "July 2025 – February 2026",
+    period: "July 2024 – February 2026",
     role: "Web Developer",
     company: "Peace for Humanity Foundation",
     details: "Improved the organisation’s online visibility by strengthening structure, metadata, and internal linking, which helped increase search impressions and drive more meaningful traffic to the site."
@@ -84,11 +90,11 @@ export default function Resume() {
               </div>
 
               <a
-                href="/Gloria_Emeka_Final_Optimized_CV.docx"
-                download
+                href="/Gloria_Emeka_CV.pdf"
+                download="Gloria_Emeka_CV.pdf"
                 className="inline-flex items-center justify-center rounded-3xl bg-[#D4AF37] px-8 py-4 font-bold text-black transition hover:bg-yellow-500"
               >
-                Download CV
+                Download CV (PDF)
               </a>
             </div>
           </section>
@@ -146,9 +152,9 @@ export default function Resume() {
           <section className="rounded-[2rem] border border-gray-200 dark:border-white/10 bg-slate-50 dark:bg-slate-950 p-12 shadow-2xl">
             <h2 className="text-4xl font-black text-gray-900 dark:text-white">Resume highlights</h2>
             <div className="mt-8 grid gap-6 md:grid-cols-3">
-              <Stat label="Years of experience" value="5+" />
+              <Stat label="Years of frontend experience" value="3+" />
               <Stat label="Production apps delivered" value="20+" />
-              <Stat label="Performance gain" value="42%" />
+              <Stat label="Fewer Lighthouse performance issues" value="42%" />
             </div>
           </section>
         </div>
