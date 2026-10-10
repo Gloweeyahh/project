@@ -1,14 +1,17 @@
 import { Link } from "react-router-dom";
 import GloreProject from "../components/GloreProject";
+import BackButton from "../components/BackButton";
 import { content } from "../data/content";
 
 export default function Home() {
   return (
-    <main className="portfolio-page" id="main-content">
+    <main className="portfolio-page portfolio-home" id="main-content">
+      <div className="portfolio-container portfolio-back"><BackButton /></div>
       <section className="portfolio-hero portfolio-container">
         <div className="hero-copy">
           <p className="portfolio-eyebrow">Gloria Emeka / Front-End Developer & UI Engineer</p>
-          <h1>Thoughtful<br />interfaces.<br /><em>Built to work.</em></h1>
+          <h1>Gloria Emeka</h1>
+          <p className="hero-tagline">Thoughtful interfaces. <span>Built to work.</span></p>
           <p className="portfolio-lead">I build responsive web experiences with React, TypeScript, and a careful eye for the details that make an interface feel right.</p>
           <div className="portfolio-actions">
             <Link className="portfolio-button" to="/work">Explore my work <span aria-hidden="true">↗</span></Link>
@@ -17,7 +20,6 @@ export default function Home() {
           <p className="hero-location">{content.location}</p>
         </div>
         <aside className="hero-index" aria-label="Portfolio overview">
-          <span className="hero-monogram" aria-hidden="true">ge.</span>
           <p>Design sensitivity.<br />Engineering discipline.</p>
           <div className="hero-index-row"><span>01</span><a href="#selected-work">Selected work</a><span aria-hidden="true">↘</span></div>
           <div className="hero-index-row"><span>02</span><a href="#recruiter">For hiring teams</a><span aria-hidden="true">↘</span></div>

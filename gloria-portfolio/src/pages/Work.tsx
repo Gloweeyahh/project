@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { projects } from "../data/projects";
 import GloreProject from "../components/GloreProject";
+import BackButton from "../components/BackButton";
 
 const filters = [{ value: "all", label: "All projects" }, { value: "ecommerce", label: "E-commerce" }, { value: "fintech", label: "Fintech" }, { value: "saas", label: "SaaS" }];
 
@@ -12,9 +13,12 @@ export default function Work() {
   return (
     <main className="portfolio-page" id="main-content">
       <div className="portfolio-container portfolio-work">
+        <div className="portfolio-back"><BackButton /></div>
+        <header className="work-heading">
         <p className="portfolio-eyebrow">Selected work / Gloria Emeka</p>
         <h1>Built with intention.<br /><em>Ready to explore.</em></h1>
         <p className="portfolio-lead">A closer look at my web projects. Start with Gloré Classique, then explore fintech and SaaS experiences.</p>
+        </header>
         <div className="work-filters" role="group" aria-label="Filter projects by category">{filters.map((item) => <button key={item.value} type="button" aria-pressed={filter === item.value} onClick={() => setFilter(item.value)}>{item.label}</button>)}</div>
         <div aria-live="polite" aria-atomic="true" className="sr-only">{(filter === "all" || filter === "ecommerce" ? 1 : 0) + otherProjects.length} projects shown</div>
         {(filter === "all" || filter === "ecommerce") && <GloreProject priority />}
