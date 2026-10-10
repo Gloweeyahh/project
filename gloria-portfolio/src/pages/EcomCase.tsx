@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import BackButton from "../components/BackButton";
 import GloreProject from "../components/GloreProject";
 
 const decisions = [
@@ -11,6 +12,7 @@ export default function EcomCase() {
   return (
     <main className="portfolio-page" id="main-content">
       <div className="portfolio-container portfolio-work">
+        <div className="portfolio-back"><BackButton /></div>
         <Link className="portfolio-text-link" to="/work"><span aria-hidden="true">←</span> Back to selected work</Link>
         <div className="case-heading"><p className="portfolio-eyebrow">Project story / E-commerce</p><h1>Gloré Classique.<br /><em>Brand meets browsing.</em></h1><p className="portfolio-lead">A bag and accessories storefront with a warm visual identity and practical details that help shoppers choose.</p></div>
         <GloreProject priority showStory={false} />
