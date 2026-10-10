@@ -1,14 +1,11 @@
-// Netlify Function: POST /api/payments/webhook
-// Paystack webhook should send header x-paystack-signature.
-// We need the raw body to verify signature.
-// Netlify Function events provide the body; we treat it as raw string if available.
+// Archived: Netlify Function: POST /api/payments/webhook
+// Original content moved to archive directory.
 
 import crypto from 'crypto';
 
 const PAYSTACK_SECRET = process.env.PAYSTACK_SECRET_KEY;
 
 function getRawBody(event) {
-  // Netlify may provide isBase64Encoded + body
   if (typeof event.body !== 'string') {
     return '';
   }
@@ -35,7 +32,6 @@ export default async function handler(event) {
 
     const payload = typeof event.body === 'string' ? JSON.parse(event.body) : event.body;
 
-    // Handle events, e.g., charge.success
     if (payload?.event === 'charge.success' || payload?.event === 'transaction.success') {
       const reference = payload?.data?.reference;
       const email = payload?.data?.customer?.email;
@@ -50,4 +46,3 @@ export default async function handler(event) {
     return { statusCode: 500, body: 'error' };
   }
 }
-

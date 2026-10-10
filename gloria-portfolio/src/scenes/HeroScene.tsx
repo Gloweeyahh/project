@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { gsap } from "../lib/gsap";
+import gsapLib from "../lib/gsap";
 import Section from "../components/ui/Section";
 import Button from "../components/ui/Button";
 import GlassCard from "../components/ui/GlassCard";
@@ -11,49 +11,58 @@ export default function HeroScene() {
   const mockupRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.from(".hero-char", {
-        y: 120,
-        opacity: 0,
-        rotateX: -90,
-        stagger: 0.04,
-        duration: 1.2,
-        ease: "back.out(1.7)"
-      });
+    let mounted = true;
+    let ctx: any = null;
+    (async () => {
+      const gsap = (gsapLib.load ? await gsapLib.load() : gsapLib);
+      if (!mounted || !gsap) return;
+      ctx = gsap.context(() => {
+        gsap.from(".hero-char", {
+          y: 120,
+          opacity: 0,
+          rotateX: -90,
+          stagger: 0.04,
+          duration: 1.2,
+          ease: "back.out(1.7)",
+        });
 
-      gsap.from(".hero-copy", {
-        y: 40,
-        opacity: 0,
-        duration: 1,
-        delay: 0.5
-      });
+        gsap.from(".hero-copy", {
+          y: 40,
+          opacity: 0,
+          duration: 1,
+          delay: 0.5,
+        });
 
-      gsap.from(".hero-mockup", {
-        x: 180,
-        opacity: 0,
-        scale: 0.95,
-        duration: 1.3,
-        ease: "power3.out"
-      });
+        gsap.from(".hero-mockup", {
+          x: 180,
+          opacity: 0,
+          scale: 0.95,
+          duration: 1.3,
+          ease: "power3.out",
+        });
 
-      gsap.to(".metric-float", {
-        y: -12,
-        duration: 2,
-        stagger: 0.2,
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut"
-      });
+        gsap.to(".metric-float", {
+          y: -12,
+          duration: 2,
+          stagger: 0.2,
+          repeat: -1,
+          yoyo: true,
+          ease: "sine.inOut",
+        });
 
-      gsap.to(".testimonial-card", {
-        boxShadow: "0 0 60px rgba(212,175,55,0.18)",
-        duration: 2,
-        repeat: -1,
-        yoyo: true
-      });
-    }, root);
+        gsap.to(".testimonial-card", {
+          boxShadow: "0 0 60px rgba(212,175,55,0.18)",
+          duration: 2,
+          repeat: -1,
+          yoyo: true,
+        });
+      }, root);
+    })();
 
-    return () => ctx.revert();
+    return () => {
+      mounted = false;
+      if (ctx && typeof ctx.revert === "function") ctx.revert();
+    };
   }, []);
 
   const handleMouseMove = (e: React.MouseEvent) => {

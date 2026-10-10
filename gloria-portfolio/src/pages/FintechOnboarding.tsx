@@ -1,7 +1,7 @@
 
 import { FormEvent, useState } from "react";
 import BrowserMockup from "../components/ui/BrowserMockup";
-import { sendEmail } from "../lib/sendEmail";
+import { sendFormEmail } from "../lib/sendEmail";
 import BackButton from "../components/BackButton";
 
 const steps = [
@@ -38,10 +38,14 @@ export default function FintechOnboarding() {
     setLoading(true);
 
     try {
-      await sendEmail({
+      await sendFormEmail({
         subject: "Fintech onboarding request",
-        html: `<h1>Fintech onboarding request</h1><p><strong>Email:</strong> ${email}</p><p><strong>Selected step:</strong> ${steps[activeStep - 1].title}</p><p><strong>Note:</strong> The user is interested in a trust-first onboarding review.</p>`,
-      });
+        fields: {
+          email,
+          selectedStep: steps[activeStep - 1].title,
+          note: "The user is interested in a trust-first onboarding review.",
+        },
+      })
 
       setSubmitted(true);
       setEmail("");

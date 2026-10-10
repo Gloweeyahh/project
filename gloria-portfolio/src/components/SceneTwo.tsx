@@ -1,27 +1,35 @@
 import { useEffect } from "react";
-import gsap from "../lib/gsap";
+import gsapLib from "../lib/gsap";
 import { content } from "../data/content";
 
 export default function SceneTwo() {
   useEffect(() => {
-    const sections = gsap.utils.toArray(".case");
+    let mounted = true;
+    (async () => {
+      const gsap = (gsapLib.load ? await gsapLib.load() : gsapLib);
+      if (!mounted || !gsap) return;
+      const sections = gsap.utils.toArray(".case");
 
-    sections.forEach((el: any) => {
-
-      gsap.fromTo(
-        el,
-        { opacity: 0.2, scale: 0.95 },
-        {
-          opacity: 1,
-          scale: 1,
-          scrollTrigger: {
-            trigger: el,
-            start: "top center",
-            toggleActions: "play none none reverse"
+      sections.forEach((el: any) => {
+        gsap.fromTo(
+          el,
+          { opacity: 0.2, scale: 0.95 },
+          {
+            opacity: 1,
+            scale: 1,
+            scrollTrigger: {
+              trigger: el,
+              start: "top center",
+              toggleActions: "play none none reverse",
+            },
           }
-        }
-      );
-    });
+        );
+      });
+    })();
+
+    return () => {
+      mounted = false;
+    };
   }, []);
 
   return (

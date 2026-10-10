@@ -14,7 +14,48 @@ export default function Work() {
   const containerRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
 
+  const categories = Array.from(new Set(projects.map((p) => p.category)));
+  const orderedCategories = ["product", "production", ...categories.filter((category) => category !== "product" && category !== "production")];
+  const filters = ["all", ...orderedCategories];
+  const filteredProjects = filter === "all" ? projects : projects.filter((project) => project.category === filter);
+
+  const githubProjectHighlights = [
+    {
+      title: "Claim-check",
+      stack: "React • Vite • Express • AI verification",
+      image: "/images/IMG_3099.png",
+      description: "A guided health-literacy tool that helps users assess online health claims using a structured, evidence-first process.",
+      repoUrl: "https://github.com/Gloweeyahh/Claim-check",
+      liveUrl: "https://claimcheck-1.netlify.app",
+    },
+    {
+      title: "Applyd",
+      stack: "HTML • CSS • JavaScript • Local storage",
+      image: "/images/IMG_3098.png",
+      description: "A job tracker built while actively job hunting, focused on keeping track of applications, deadlines, and follow-ups.",
+      repoUrl: "https://github.com/Gloweeyahh/Applyd",
+      liveUrl: "https://gloweeyahh.github.io/Applyd",
+    },
+    {
+      title: "HealthSpec",
+      stack: "Next.js • TypeScript • Supabase • Netlify",
+      image: "/images/IMG_3106.png",
+      description: "A conformance and interoperability platform for health APIs, built to help teams test and compare integration quality.",
+      repoUrl: "https://github.com/Gloweeyahh/Healthspec",
+      liveUrl: "https://gloria-healthspec.netlify.app",
+    },
+  ];
+
   useEffect(() => {
+    const cards = Array.from(document.querySelectorAll<HTMLElement>(".work-card"));
+    gsap.set(cards, {
+      opacity: 1,
+      y: 0,
+      x: 0,
+      visibility: "visible",
+      clearProps: "transform",
+    });
+
     const ctx = gsap.context(() => {
       gsap.from(".work-card", {
         y: 80,
@@ -37,7 +78,7 @@ export default function Work() {
     }, containerRef);
 
     return () => ctx.revert();
-  }, []);
+  }, [filter]);
 
   useEffect(() => {
     const cards = Array.from(document.querySelectorAll<HTMLElement>(".work-card"));
@@ -65,9 +106,6 @@ export default function Work() {
     });
   }, []);
 
-  const filters = ["all", "fintech", "ecommerce", "saas"];
-  const filteredProjects = filter === "all" ? projects : projects.filter((project) => project.category === filter);
-
   useEffect(() => {
     if (filter === "all") {
       return;
@@ -88,11 +126,11 @@ export default function Work() {
         <div className="max-w-5xl mx-auto text-center mb-20 work-hero">
 
           <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-gray-900 dark:text-white">
-            Work That Doesn't Just Look Good —
-            <span className="text-[#D4AF37]"> It Converts.</span>
+            A look at some of my favorite builds
+            <span className="text-[#D4AF37]"> where smart design meets solid code.</span>
           </h1>
           <p className="text-gray-600 dark:text-gray-400 mt-6 text-lg">
-            Selected builds where design met revenue, performance, and obsession.
+            A few selected projects where design, product thinking, and practical engineering came together to solve real-world problems.
           </p>
         </div>
 
@@ -121,11 +159,21 @@ export default function Work() {
                   role="button"
                   tabIndex={0}
                   onClick={() => navigate(project.caseRoute)}
-                  className={`work-card group border rounded-xl p-6 hover:border-[#D4AF37] transition relative overflow-hidden bg-slate-50 dark:bg-slate-950 border-gray-300 dark:border-gray-800 cursor-pointer ${
-                    (filter !== "all" && selectedProject.slug === project.slug) ? "shadow-2xl border-[#D4AF37] bg-white dark:bg-slate-900" : ""
+                  className={`work-card group border rounded-xl p-6 transition relative overflow-hidden cursor-pointer opacity-100 ${
+                    filter === "all"
+                      ? "bg-white dark:bg-slate-900 border-[#D4AF37]/50 shadow-[0_20px_48px_rgba(15,23,42,0.08)] hover:border-[#D4AF37]"
+                      : "bg-slate-50 dark:bg-slate-950 border-gray-300 dark:border-gray-800 hover:border-[#D4AF37]"
+                  } ${
+                    filter !== "all" && selectedProject.slug === project.slug ? "shadow-2xl border-[#D4AF37] bg-white dark:bg-slate-900" : ""
                   }`}
                 >
                   <div className="absolute inset-0 opacity-0 group-hover:opacity-10 bg-gradient-to-br from-[#D4AF37] to-transparent transition"></div>
+                  <img
+                    src={project.cover}
+                    alt={`${project.title} preview`}
+                    className="mb-5 h-56 w-full rounded-2xl border border-gray-200 object-cover object-top dark:border-white/10"
+                    style={{ objectPosition: "center 18%" }}
+                  />
                   <p className="text-xs uppercase tracking-[0.35em] text-gray-400 dark:text-gray-500 mb-4">{project.client}</p>
                   <h3 className="text-2xl font-semibold mb-2 text-gray-900 dark:text-white">{project.title}</h3>
                   <p className="text-gray-600 dark:text-gray-400 mb-4">{project.problem}</p>
@@ -161,6 +209,12 @@ export default function Work() {
           </div>
           {filter !== "all" && (
             <aside className="rounded-[2rem] border border-gray-200 dark:border-white/10 bg-slate-50 dark:bg-slate-950 p-10 shadow-2xl">
+              <img
+                src={selectedProject.cover}
+                alt={`${selectedProject.title} preview`}
+                className="mb-6 h-60 w-full rounded-2xl border border-gray-200 object-cover object-top dark:border-white/10"
+                style={{ objectPosition: "center 18%" }}
+              />
               <p className="text-sm uppercase tracking-[0.35em] text-[#D4AF37]">Preview</p>
               <h2 className="mt-4 text-4xl font-black text-gray-900 dark:text-white">{selectedProject.title}</h2>
               <p className="mt-4 text-gray-600 dark:text-gray-400">{selectedProject.solution}</p>
@@ -174,9 +228,7 @@ export default function Work() {
               </div>
               <div className="mt-10 space-y-4">
                 <button
-          
-          l99
-          \//</div>type="button"
+                  type="button"
                   onClick={() => navigate(selectedProject.caseRoute)}
                   className="w-full rounded-3xl bg-[#D4AF37] px-6 py-4 text-black font-bold transition hover:bg-yellow-500"
                 >
@@ -195,6 +247,50 @@ export default function Work() {
           )}
         </div>
       </section>
+
+      <section className="max-w-6xl mx-auto px-6 pb-24">
+        <div className="mb-12 max-w-3xl">
+          <p className="text-sm uppercase tracking-[0.35em] text-[#D4AF37]">GitHub highlights</p>
+          <h2 className="mt-4 text-3xl md:text-4xl font-black text-gray-900 dark:text-white">
+            A few repos that show how I build, solve problems, and ship practical work.
+          </h2>
+        </div>
+
+        <div className="grid gap-6 md:grid-cols-3">
+          {githubProjectHighlights.map((project) => (
+            <article key={project.title} className="rounded-[2rem] border border-gray-200 dark:border-white/10 bg-slate-50 dark:bg-slate-950 p-8 shadow-xl overflow-hidden">
+              <img
+                src={project.image}
+                alt={`${project.title} preview`}
+                className="mb-5 h-44 w-full rounded-2xl border border-gray-200 object-cover object-top dark:border-white/10"
+                style={{ objectPosition: "center 18%" }}
+              />
+              <p className="text-xs uppercase tracking-[0.25em] text-[#D4AF37]">{project.stack}</p>
+              <h3 className="mt-5 text-2xl font-black text-gray-900 dark:text-white">{project.title}</h3>
+              <p className="mt-4 text-base text-gray-700 dark:text-gray-300">{project.description}</p>
+              <div className="mt-6 flex flex-wrap gap-3">
+                <a
+                  href={project.repoUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center justify-center rounded-full bg-[#D4AF37] px-4 py-2 text-sm font-bold text-black transition hover:bg-yellow-500"
+                >
+                  View repo
+                </a>
+                <a
+                  href={project.liveUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center justify-center rounded-full border border-gray-300 dark:border-white/20 px-4 py-2 text-sm font-bold text-gray-900 dark:text-white transition hover:border-yellow-400"
+                >
+                  Live demo
+                </a>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
     </>
   );
 }
+

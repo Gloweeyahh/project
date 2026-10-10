@@ -1,6 +1,6 @@
 import { FormEvent, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { sendEmail } from "../lib/sendEmail";
+import { sendFormEmail } from "../lib/sendEmail";
 import BackButton from "../components/BackButton";
 
 
@@ -9,6 +9,13 @@ const packagePrefill: Record<string, string> = {
   Growth: "Includes 5 pages, animations, SEO structure, and analytics setup.",
   Authority: "Includes 10+ pages, custom systems, funnels, and a CMS-ready architecture.",
 };
+
+const contactLinks = [
+  { label: "Email", value: "glowemeka@gmail.com", link: "mailto:glowemeka@gmail.com" },
+  { label: "WhatsApp", value: "Chat on WhatsApp", link: "https://wa.me/2349028514352?text=Hi%21%20%F0%9F%91%8B%20I%27m%20interested%20in%20your%20web%20design%20services.%20I%27d%20love%20to%20discuss%20my%20project" },
+  { label: "LinkedIn", value: "Gloria Emeka", link: "https://www.linkedin.com/in/gloria-emeka?utm_source=share_via&utm_content=profile&utm_medium=member_ios" },
+  { label: "Location", value: "FCT Abuja, Nigeria", link: "https://maps.google.com/maps?q=FCT%20Abuja%20Nigeria" },
+] as const;
 
 export default function Contact() {
   const [name, setName] = useState("");
@@ -50,10 +57,14 @@ export default function Contact() {
     setLoading(true);
 
     try {
-      await sendEmail({
+      await sendFormEmail({
         subject: "New contact request",
-        html: `<h1>New contact request</h1><p><strong>Name:</strong> ${name}</p><p><strong>Email:</strong> ${email}</p><p><strong>Message:</strong><br/>${message}</p>`,
-      });
+        fields: {
+          name,
+          email,
+          message,
+        },
+      })
 
       setStatus("sent");
       setName("");
@@ -90,14 +101,15 @@ export default function Contact() {
               </div>
 
               <div className="grid gap-6 sm:grid-cols-2">
-                <ContactCard label="Fastest way" value="Submit the form" link="#contact-form" />
-                <ContactCard label="Email" value="hello@yourbrand.com" link="mailto:hello@yourbrand.com" />
+                {contactLinks.map((item) => (
+                  <ContactCard key={item.label} label={item.label} value={item.value} link={item.link} />
+                ))}
               </div>
 
               <div className="rounded-3xl overflow-hidden border border-gray-200 dark:border-white/10 shadow-xl">
                 <iframe
                   title="Office location map"
-                  src="https://maps.google.com/maps?q=Lagos%20Nigeria&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                  src="https://maps.google.com/maps?q=FCT%20Abuja%20Nigeria&t=&z=13&ie=UTF8&iwloc=&output=embed"
                   className="w-full h-80 border-0"
                   loading="lazy"
                 />
@@ -112,8 +124,8 @@ export default function Contact() {
                 {prefillNote && (
                   <p className="text-sm text-green-500">{prefillNote}</p>
                 )}
-                <FormInput label="Name" value={name} onChange={setName} placeholder="Gloria Emeka" />
-                <FormInput label="Email" value={email} onChange={setEmail} placeholder="hello@yourbrand.com" type="email" />
+                <FormInput label="Name" value={name} onChange={setName} placeholder="Gloria Ogechi Emeka" />
+                <FormInput label="Email" value={email} onChange={setEmail} placeholder="glowemeka@gmail.com" type="email" />
                 <label className="block">
                   <span className="text-gray-700 dark:text-gray-300">Message</span>
                   <textarea

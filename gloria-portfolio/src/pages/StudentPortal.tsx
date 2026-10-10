@@ -121,9 +121,6 @@ export default function StudentPortal() {
   const unlockedForActive = isCourseUnlocked(activeCourse)
 
   const validateAccessCode = () => {
-    // NOTE: Demo-only behavior.
-    // - If the user enters any non-empty code, we mark the relevant token key as validated.
-    // - Replace with real verification via backend when available.
     if (!accessCodeInput.trim()) {
       alert('Enter your access code')
       return
@@ -135,8 +132,26 @@ export default function StudentPortal() {
       return
     }
 
-    setValidatedCodes((prev) => ({ ...prev, [tokenKey]: true }))
-    alert('Access code accepted. Downloads unlocked.')
+    // Validate via serverless function which checks ACCESS_CODE(s) in env
+    ;(async () => {
+      try {
+        const res = await fetch('/.netlify/functions/validate-access-code', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ code: accessCodeInput, courseId: activeCourse }),
+        })
+        const data = await res.json()
+        if (res.ok && data.ok) {
+          setValidatedCodes((prev) => ({ ...prev, [tokenKey]: true }))
+          alert('Access code accepted. Downloads unlocked.')
+        } else {
+          alert(data.error || 'Invalid access code')
+        }
+      } catch (err) {
+        console.error('validate access code error', err)
+        alert('Error validating code')
+      }
+    })()
   }
 
   const coursesForSidebar = useMemo(() => {

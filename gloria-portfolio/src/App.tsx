@@ -1,115 +1,135 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import { AnimatePresence } from "framer-motion";
-import ThemeProvider from "./context/ThemeContext";
-import Home from "./pages/Home";
-import Work from "./pages/Work";
-import Services from "./pages/Services";
-import Process from "./pages/Process";
-import Contact from "./pages/Contact";
-import Proposals from "./pages/Proposals";
-import ProposalPage from "./pages/ProposalPage";
-import FintechCase from "./pages/FintechCase";
-import EcomCase from "./pages/EcomCase";
-import SaasCase from "./pages/SaasCase";
-import CaseStudyPage from "./pages/CaseStudyPage";
-import Resume from "./pages/Resume";
-import CheckoutPage from "./pages/CheckoutPage";
-import PaymentCallback from "./pages/PaymentCallback";
-import CourseCommerce from "./pages/CourseCommerce";
-import DigitalVault from "./pages/DigitalVault";
-import StudentPortal from "./pages/StudentPortal";
-import DownloadCenter from "./pages/DownloadCenter";
-import AnalyticsHQ from "./pages/AnalyticsHQ";
-import AuditExperience from "./pages/AuditExperience";
-import ROIEstimator from "./pages/ROIEstimator";
+// AnimatePresence is intentionally not imported here to avoid large initial bundle.
+import React, { lazy, Suspense } from 'react';
+
+const Home = lazy(() => import('./pages/Home'));
+const Work = lazy(() => import('./pages/Work'));
+const Services = lazy(() => import('./pages/Services'));
+const Process = lazy(() => import('./pages/Process'));
+const Contact = lazy(() => import('./pages/Contact'));
+const Proposals = lazy(() => import('./pages/Proposals'));
+const ProposalPage = lazy(() => import('./pages/ProposalPage'));
+const FintechCase = lazy(() => import('./pages/FintechCase'));
+const EcomCase = lazy(() => import('./pages/EcomCase'));
+const SaasCase = lazy(() => import('./pages/SaasCase'));
+const CaseStudyPage = lazy(() => import('./pages/CaseStudyPage'));
+const Resume = lazy(() => import('./pages/Resume'));
+const About = lazy(() => import('./pages/About'));
+const CheckoutPage = lazy(() => import('./pages/CheckoutPage'));
+const PaymentCallback = lazy(() => import('./pages/PaymentCallback'));
+const CourseCommerce = lazy(() => import('./pages/CourseCommerce'));
+const DigitalVault = lazy(() => import('./pages/DigitalVault'));
+const StudentPortal = lazy(() => import('./pages/StudentPortal'));
+const DownloadCenter = lazy(() => import('./pages/DownloadCenter'));
+const AnalyticsHQ = lazy(() => import('./pages/AnalyticsHQ'));
+const AuditExperience = lazy(() => import('./pages/AuditExperience'));
+const ROIEstimator = lazy(() => import('./pages/ROIEstimator'));
 import Nav from "./components/Nav";
-import PageTransition from "./components/PageTransition";
-import FloatingWhatsApp from "./components/FloatingWhatsApp";
+const PageTransition = lazy(() => import('./components/PageTransition'));
+const FloatingWhatsApp = React.lazy(() => import('./components/FloatingWhatsApp'));
+const NotFound = lazy(() => import('./pages/NotFound'));
+import Footer from './components/Footer';
 
 
 export default function App() {
 
   return (
-    <ThemeProvider>
+    <>
       <Router>
         <Nav />
-        <AnimatePresence mode="wait">
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <PageTransition>
-                  <Home />
-                </PageTransition>
-              }
-            />
-            <Route
-              path="/work"
-              element={
-                <PageTransition>
-                  <Work />
-                </PageTransition>
-              }
-            />
-            <Route
-              path="/services"
-              element={
-                <PageTransition>
-                  <Services />
-                </PageTransition>
-              }
-            />
-            <Route
-              path="/process"
-              element={
-                <PageTransition>
-                  <Process />
-                </PageTransition>
-              }
-            />
-            <Route
-              path="/contact"
-              element={
-                <PageTransition>
-                  <Contact />
-                </PageTransition>
-              }
-            />
-            <Route path="/work/fintech" element={<FintechCase />} />
-            <Route path="/work/ecommerce" element={<EcomCase />} />
-            <Route path="/work/saas" element={<SaasCase />} />
-            <Route path="/case-study/:slug" element={<CaseStudyPage />} />
-            <Route path="/resume" element={<Resume />} />
-            <Route
-              path="/proposals"
-              element={
-                <PageTransition>
-                  <Proposals />
-                </PageTransition>
-              }
-            />
-            <Route
-              path="/proposal/:slug"
-              element={
-                <PageTransition>
-                  <ProposalPage />
-                </PageTransition>
-              }
-            />
-            <Route path="/checkout" element={<CheckoutPage />} />
-            <Route path="/payment-callback" element={<PaymentCallback />} />
-            <Route path="/courses" element={<CourseCommerce />} />
-            <Route path="/vault" element={<DigitalVault />} />
-            <Route path="/student" element={<StudentPortal />} />
-            <Route path="/downloads" element={<DownloadCenter />} />
-            <Route path="/analytics" element={<AnalyticsHQ />} />
-            <Route path="/audit" element={<AuditExperience />} />
-            <Route path="/roi" element={<ROIEstimator />} />
-          </Routes>
-        </AnimatePresence>
+        <main id="main-content">
+          <Suspense fallback={<div aria-busy="true">Loading…</div>}>
+            <>
+              <Routes>
+                <Route
+                  path="/"
+                  element={
+                    <PageTransition>
+                      <Home />
+                    </PageTransition>
+                  }
+                />
+                <Route
+                  path="/work"
+                  element={
+                    <PageTransition>
+                      <Work />
+                    </PageTransition>
+                  }
+                />
+                <Route
+                  path="/services"
+                  element={
+                    <PageTransition>
+                      <Services />
+                    </PageTransition>
+                  }
+                />
+                <Route
+                  path="/process"
+                  element={
+                    <PageTransition>
+                      <Process />
+                    </PageTransition>
+                  }
+                />
+                <Route
+                  path="/contact"
+                  element={
+                    <PageTransition>
+                      <Contact />
+                    </PageTransition>
+                  }
+                />
+                <Route path="/work/fintech" element={<FintechCase />} />
+                <Route path="/work/ecommerce" element={<EcomCase />} />
+                <Route path="/work/saas" element={<SaasCase />} />
+                <Route path="/case-study/:slug" element={<CaseStudyPage />} />
+                <Route path="/resume" element={<Resume />} />
+                <Route
+                  path="/about"
+                  element={
+                    <PageTransition>
+                      <About />
+                    </PageTransition>
+                  }
+                />
+                <Route
+                  path="/proposals"
+                  element={
+                    <PageTransition>
+                      <Proposals />
+                    </PageTransition>
+                  }
+                />
+                <Route
+                  path="/proposal/:slug"
+                  element={
+                    <PageTransition>
+                      <ProposalPage />
+                    </PageTransition>
+                  }
+                />
+                <Route path="/checkout" element={<CheckoutPage />} />
+                <Route path="/payment-callback" element={<PaymentCallback />} />
+                <Route path="/courses" element={<CourseCommerce />} />
+                <Route path="/vault" element={<DigitalVault />} />
+                <Route path="/student" element={<StudentPortal />} />
+                <Route path="/downloads" element={<DownloadCenter />} />
+                <Route path="/analytics" element={<AnalyticsHQ />} />
+                <Route path="/audit" element={<AuditExperience />} />
+                <Route path="/roi" element={<ROIEstimator />} />
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </>
+          </Suspense>
+        </main>
+        <Footer />
       </Router>
-      <FloatingWhatsApp />
-    </ThemeProvider>
+      <Suspense fallback={null}>
+        <FloatingWhatsApp />
+      </Suspense>
+    </>
   );
 }

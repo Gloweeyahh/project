@@ -31,9 +31,25 @@ export default function DigitalVault() {
   const [granted, setGranted] = useState(false);
 
   const unlock = () => {
-    if (code.toLowerCase() === "gloriagold") {
-      setGranted(true);
+    if (!code.trim()) {
+      return
     }
+
+    ;(async () => {
+      try {
+        const res = await fetch('/.netlify/functions/validate-access-code', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ code }),
+        })
+        const data = await res.json()
+        if (res.ok && data.ok) setGranted(true)
+        else alert(data.error || 'Invalid access code')
+      } catch (err) {
+        console.error('access code validation error', err)
+        alert('Error validating access code')
+      }
+    })()
   };
 
   return (

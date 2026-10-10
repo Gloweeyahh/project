@@ -1,5 +1,5 @@
-// Netlify Function: GET /api/payments/verify/:reference
-// Frontend expects JSON: { ok: true/false, reference, email, plan? } when status === 'success'
+// Archived: Netlify Function: GET /api/payments/verify/:reference
+// Original content moved to archive directory.
 
 const PAYSTACK_SECRET_KEY = process.env.PAYSTACK_SECRET_KEY;
 
@@ -13,8 +13,6 @@ export default async function handler(event) {
       return { statusCode: 405, body: 'Method not allowed' };
     }
 
-    // Netlify will pass the dynamic segment in pathParameters when using serverless-routing.
-    // Fallback to parsing from path.
     const reference = event.pathParameters?.reference || event.path?.split('/').pop();
 
     if (!reference) {
@@ -58,4 +56,3 @@ export default async function handler(event) {
     return { statusCode: 500, headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ error: 'server error' }) };
   }
 }
-

@@ -1,5 +1,6 @@
 [build]
-  command = "npm run build"
+  # Command intentionally left empty for CLI prebuilt deploys
+  command = ""
   publish = "dist"
   functions = "netlify/functions"
 

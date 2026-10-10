@@ -2,13 +2,8 @@ import { useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import BackButton from "../components/BackButton"
+import { sendFormEmail } from "../lib/sendEmail"
 
-
-declare global {
-  interface Window {
-    PaystackPop: any
-  }
-}
 
 export default function CheckoutPage() {
   const [email, setEmail] = useState('')
@@ -45,28 +40,40 @@ export default function CheckoutPage() {
   const handlePayment = () => {
     if (!email) return alert('Enter your email')
 
+    // Build a WhatsApp message with full purchase details and redirect user.
     setLoading(true)
 
-    // Always use the backend payment flow.
-    fetch('/api/payments/init', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, amount, plan: courseParam }),
-    })
-      .then((r) => r.json())
-      .then((data) => {
+    const oneOnOneText = oneOnOne ? 'Yes (includes extra ₦25,000)' : 'No'
+
+    // Prepare access notify: sends owner an email with the access code and purchaser details.
+    ;(async () => {
+      try {
+        const resp = await fetch('/.netlify/functions/prepare-access-notify', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, courseId: courseParam, plan: course.title, amount: displayPrice, oneOnOne }),
+        })
+        const data = await resp.json()
+        const reference = data?.reference || 'no-ref'
+
+        const message = `Hello Gloria,%0AI'd like to purchase the "${course.title}" course (plan: ${courseParam}).%0AAmount: ${displayPrice}%0AOne-on-one lessons: ${oneOnOneText}%0AEmail: ${email}%0AReference: ${reference}%0A%0APlease share next steps and payment instructions.`
+
+        const waNumber = '2347036630817'
+        const waUrl = `https://wa.me/${waNumber}?text=${encodeURIComponent(message)}`
+
+        // Redirect to WhatsApp immediately after attempting to send the notification
+        window.location.href = waUrl
+      } catch (err) {
+        console.error('Failed to notify owner', err)
+        // Fallback to quick WhatsApp message without reference
+        const message = `Hello Gloria,%0AI'd like to purchase the "${course.title}" course (plan: ${courseParam}).%0AAmount: ${displayPrice}%0AOne-on-one lessons: ${oneOnOneText}%0AEmail: ${email}%0A%0APlease share next steps and payment instructions.`
+        const waNumber = '2347036630817'
+        const waUrl = `https://wa.me/${waNumber}?text=${encodeURIComponent(message)}`
+        window.location.href = waUrl
+      } finally {
         setLoading(false)
-        if (data.authorization_url) {
-          window.location.href = data.authorization_url
-        } else {
-          alert('Payment initialization failed')
-        }
-      })
-      .catch((err) => {
-        console.error(err)
-        setLoading(false)
-        alert('Payment init error')
-      })
+      }
+    })()
   }
 
   const isFreeCourse = baseAmount === 0
@@ -89,7 +96,9 @@ export default function CheckoutPage() {
       </h1>
 
       <div className="max-w-xl space-y-6">
+        <label htmlFor="checkout-email" className="sr-only">Email</label>
         <input
+          id="checkout-email"
           type="email"
           placeholder="Your email"
           value={email}
@@ -99,7 +108,6 @@ export default function CheckoutPage() {
           required
           className="w-full p-4 rounded-2xl bg-gray-100 dark:bg-slate-950 border border-gray-300 dark:border-white/20 text-gray-900 dark:text-white placeholder:text-gray-500 dark:placeholder:text-gray-400"
           onInvalid={(e) => {
-            // HTML5 validation message
             e.currentTarget.setCustomValidity('Please enter a valid email address');
           }}
           onInput={(e) => {

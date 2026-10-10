@@ -1,0 +1,34 @@
+/* Local copy of Paystack button styles to avoid cross-origin requests */
+.paystack-button,
+.paystack-btn,
+.paystack-inline-btn {
+  display: inline-block;
+  padding: 0.75rem 1.25rem;
+  border-radius: 12px;
+  background: #00a67a; /* Paystack green */
+  color: #fff;
+  font-weight: 700;
+  text-decoration: none;
+  text-align: center;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(2, 132, 112, 0.15);
+}
+
+.paystack-button:active,
+.paystack-btn:active,
+.paystack-inline-btn:active {
+  transform: translateY(1px);
+}
+
+.paystack-button[disabled] {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* variant: outline */
+.paystack-button.outline {
+  background: transparent;
+  color: #00a67a;
+  border: 2px solid #00a67a;
+}

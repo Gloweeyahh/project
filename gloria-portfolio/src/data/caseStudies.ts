@@ -4,6 +4,8 @@ export const caseStudies = [
     title: 'Fintech Trust Transformation',
     problem: 'Complex onboarding killing conversions',
     solution: 'Simplified onboarding + trust signals',
+    approach: 'Audit → prototypes → progressive disclosure; small experiments validated changes before rollout.',
+    tech: ['React', 'Tailwind', 'Netlify'],
     result: '+67% signups',
     metrics: [
       { label: 'Conversion', value: '+67%' },
@@ -17,6 +19,8 @@ export const caseStudies = [
     title: 'E-commerce Growth Engine',
     problem: 'Low AOV + cart abandonment',
     solution: 'Product storytelling + checkout redesign',
+    approach: 'Story-first product pages, pricing experiments, streamlined checkout.',
+    tech: ['React', 'Tailwind'],
     result: '+32% AOV',
     metrics: [
       { label: 'AOV', value: '+32%' },
@@ -30,6 +34,8 @@ export const caseStudies = [
     title: 'SaaS Performance Mastery',
     problem: 'Slow dashboard hurting retention',
     solution: 'Core Web Vitals rebuild',
+    approach: 'Profile → defer non-critical scripts → optimize rendering path.',
+    tech: ['Vite', 'React', 'Lighthouse'],
     result: '100 Lighthouse',
     metrics: [
       { label: 'Performance', value: '100' },

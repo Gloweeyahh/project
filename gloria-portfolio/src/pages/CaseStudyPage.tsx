@@ -33,10 +33,29 @@ export default function CaseStudyPage() {
         {caseData.disclaimer}
       </div>
 
+      {project?.cover && (
+        <div className="mb-8 rounded-xl overflow-hidden">
+          <img src={project.cover} alt={`${caseData.title} preview`} className="w-full h-64 object-cover rounded-xl" />
+        </div>
+      )}
+
       {/* PROBLEM / SOLUTION */}
       <div className="grid lg:grid-cols-2 gap-10 mb-16">
         <Block title="Problem" text={caseData.problem} />
         <Block title="Solution" text={caseData.solution} />
+      </div>
+
+      {/* APPROACH / TECHNOLOGY */}
+      <div className="grid lg:grid-cols-2 gap-10 mb-16">
+        <Block title="Approach" text={caseData.approach} />
+        <div className="p-8 rounded-3xl border border-gray-300 dark:border-white/20 bg-white dark:bg-slate-950">
+          <h3 className="text-xl mb-2 text-[#D4AF37]">Technology</h3>
+          <div className="flex flex-wrap gap-2">
+            {caseData.tech?.map((t: string) => (
+              <span key={t} className="px-3 py-1 rounded-full bg-gray-100 dark:bg-slate-900 text-sm">{t}</span>
+            ))}
+          </div>
+        </div>
       </div>
 
       {/* METRICS */}

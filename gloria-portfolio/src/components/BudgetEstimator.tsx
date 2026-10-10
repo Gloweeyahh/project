@@ -20,6 +20,7 @@ export default function BudgetEstimator() {
             value={pages}
             onChange={(e) => setPages(Number(e.target.value))}
             className="w-full"
+            aria-label="Number of pages for estimate"
           />
 
           <div className="flex flex-wrap gap-6 items-center">

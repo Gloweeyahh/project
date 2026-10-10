@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react'
 import { motion } from 'framer-motion'
-import { sendEmail } from '../lib/sendEmail'
+import { sendEmail, sendFormEmail } from '../lib/sendEmail'
 import BackButton from "../components/BackButton";
 
 export default function ROIEstimator() {
@@ -72,7 +72,7 @@ export default function ROIEstimator() {
 
             <button
               type="button"
-              onClick={async () => {
+                onClick={async () => {
                 setError('')
                 if (!email.includes('@')) {
                   setError('Please enter a valid email address.')
@@ -83,12 +83,29 @@ export default function ROIEstimator() {
                 setLoading(true)
 
                 try {
-                  await sendEmail({
-                    subject: 'ROI Estimate request',
-                    html: `<h1>ROI Estimate</h1><p><strong>Monthly traffic:</strong> ${traffic}</p><p><strong>Current conversion:</strong> ${conversion}%</p><p><strong>Projected conversion:</strong> ${improved}%</p><p><strong>Average order value:</strong> $${aov}</p><p><strong>Current revenue:</strong> $${result.currentRevenue.toLocaleString()}</p><p><strong>Projected revenue:</strong> $${result.improvedRevenue.toLocaleString()}</p><p><strong>Uplift:</strong> $${result.uplift.toLocaleString()}</p>`,
-                    to: email,
-                  })
-                  setStatus('sent')
+                    // Notify site owner
+                    await sendFormEmail({
+                      subject: 'ROI Estimate request',
+                      fields: {
+                        monthlyTraffic: traffic,
+                        currentConversionPercent: conversion,
+                        projectedConversionPercent: improved,
+                        averageOrderValue: aov,
+                        currentRevenue: result.currentRevenue,
+                        projectedRevenue: result.improvedRevenue,
+                        uplift: result.uplift,
+                        requesterEmail: email,
+                      },
+                    })
+
+                    // Also email the estimate to the requester
+                    await sendEmail({
+                      subject: 'Your ROI Estimate',
+                      html: `<h1>ROI Estimate</h1><p><strong>Monthly traffic:</strong> ${traffic}</p><p><strong>Current conversion:</strong> ${conversion}%</p><p><strong>Projected conversion:</strong> ${improved}%</p><p><strong>Average order value:</strong> $${aov}</p><p><strong>Current revenue:</strong> $${result.currentRevenue.toLocaleString()}</p><p><strong>Projected revenue:</strong> $${result.improvedRevenue.toLocaleString()}</p><p><strong>Uplift:</strong> $${result.uplift.toLocaleString()}</p>`,
+                      to: email,
+                    })
+
+                    setStatus('sent')
                 } catch {
                   setError('Unable to send estimate. Try again later.')
                   setStatus('error')

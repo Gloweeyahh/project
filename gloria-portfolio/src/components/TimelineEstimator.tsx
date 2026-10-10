@@ -20,6 +20,7 @@ export default function TimelineEstimator() {
             value={pages}
             onChange={(e) => setPages(Number(e.target.value))}
             className="w-full"
+            aria-label="Number of pages for timeline"
           />
 
           <div className="flex flex-wrap gap-6 items-center">

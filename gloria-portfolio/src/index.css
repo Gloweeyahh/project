@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import "./styles/paystack-button.css";
+
 body {
   margin: 0;
   padding-top: 5.5rem;

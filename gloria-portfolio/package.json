@@ -7,7 +7,7 @@
     "dev": "vite",
     "dev:full": "concurrently \"vite\" \"node server.js\"",
     "server": "node server.js",
-    "build": "tsc && vite build",
+    "build": "vite build && node -e \"const fs=require('fs'); ['_headers','_redirects'].forEach((file)=>fs.copyFileSync(file, 'dist/' + file));\"",
     "preview": "vite preview"
   },
   "dependencies": {

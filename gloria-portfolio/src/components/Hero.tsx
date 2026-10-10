@@ -1,18 +1,26 @@
 import { useEffect } from "react";
 
-import gsap from "../lib/gsap";
+import gsapLib from "../lib/gsap";
 import { content } from "../data/content";
 
 export default function Hero() {
   useEffect(() => {
+    let mounted = true;
+    (async () => {
+      const gsap = (gsapLib.load ? await gsapLib.load() : gsapLib);
+      if (!mounted || !gsap) return;
+      gsap.from(".hero-text span", {
+        y: 80,
+        opacity: 0,
+        stagger: 0.05,
+        duration: 1,
+        ease: "power4.out",
+      });
+    })();
 
-    gsap.from(".hero-text span", {
-      y: 80,
-      opacity: 0,
-      stagger: 0.05,
-      duration: 1,
-      ease: "power4.out"
-    });
+    return () => {
+      mounted = false;
+    };
   }, []);
 
   return (

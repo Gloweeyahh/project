@@ -1,36 +1,62 @@
 
 
 import BackButton from "../components/BackButton";
+import GlobalCTA from '../components/GlobalCTA'
 
 const experience = [
-
   {
-    period: "2023 - Present",
-    role: "Founder & Lead Designer",
-    company: "Gloria Emeka Studio",
-    details: "Creating premium websites for founders, educators, and fintech brands with a focus on conversion-led UX."
+    period: "August 2024 – Present",
+    role: "Independent Freelance Developer",
+    company: "Self-employed",
+    details: "Build and ship websites and digital experiences for clients, covering frontend architecture, responsive UI, testing, deployment, and follow-up fixes from start to finish."
   },
   {
-    period: "2021 - 2023",
-    role: "Senior Frontend Engineer",
-    company: "Growth Labs",
-    details: "Built design systems and conversion-focused experiences for SaaS, commerce, and education products."
+    period: "July 2025 – February 2026",
+    role: "Web Developer",
+    company: "Peace for Humanity Foundation",
+    details: "Improved the organisation’s online visibility by strengthening structure, metadata, and internal linking, which helped increase search impressions and drive more meaningful traffic to the site."
   },
   {
-    period: "2019 - 2021",
-    role: "UI / UX Designer",
-    company: "Studio X",
-    details: "Delivered high-converting landing pages and product launches for B2B and digital creators."
+    period: "February 2019 – December 2021",
+    role: "Graphics Designer",
+    company: "Steelbase Resources Limited",
+    details: "Created branded visuals and digital assets for campaigns and business communications, helping sharpen my eye for layout, consistency, and design systems that later influenced how I build interfaces."
   }
 ];
 
 const skills = [
-  "React / TypeScript",
-  "Tailwind CSS / CSS-in-JS",
-  "Conversion optimization",
-  "Motion & interaction design",
-  "Design systems",
-  "Accessibility audit"
+  "JavaScript (ES6+)",
+  "TypeScript",
+  "React",
+  "Next.js",
+  "HTML5",
+  "CSS3",
+  "Tailwind CSS",
+  "Node.js",
+  "Express",
+  "REST / JSON APIs",
+  "MongoDB",
+  "Local Storage",
+  "Git / GitHub",
+  "Automated testing",
+  "Core Web Vitals",
+  "Lighthouse",
+  "Accessibility",
+  "SEO",
+  "Figma"
+];
+
+const selectedProjects = [
+  {
+    title: "ClaimCheck",
+    stack: "React • Vite • Express • PubMed • WHO/CDC APIs",
+    summary: "Built a health-focused web app that walks users through a simple decision-making flow to evaluate online health claims with more clarity and less confusion."
+  },
+  {
+    title: "Applyd",
+    stack: "JavaScript • HTML • CSS • Local Storage • Node Test Runner",
+    summary: "Created a practical job application tracker that helps users organise applications, deadlines, and follow-ups without adding unnecessary complexity."
+  }
 ];
 
 export default function Resume() {
@@ -48,20 +74,28 @@ export default function Resume() {
                 <p className="text-sm uppercase tracking-[0.35em] text-[#D4AF37]">Resume</p>
                 <h1 className="mt-4 text-6xl font-black text-gray-900 dark:text-white">Gloria Emeka</h1>
                 <p className="mt-6 text-lg text-gray-600 dark:text-gray-300 max-w-3xl">
-                  Conversion-led digital product design, frontend engineering, and premium website strategy
-                  for founders and high-growth brands.
+                  I’m a frontend engineer and designer with hands-on experience building websites and product experiences that are clean, useful, and built to convert.
                 </p>
+
+                <div className="mt-6 rounded-2xl border border-gray-200 dark:border-white/10 bg-white dark:bg-slate-950 p-4">
+                  <p className="text-sm text-gray-500">Professional summary</p>
+                  <p className="mt-2 text-gray-700 dark:text-gray-300">I bring strategy, design, and frontend development together so projects feel consistent from the first idea to the final launch. I care about clarity, performance, and building experiences people actually understand and trust.</p>
+                </div>
               </div>
 
               <a
-                href="/Gloria-Emeka-Resume.pdf"
+                href="/Gloria_Emeka_Final_Optimized_CV.docx"
                 download
                 className="inline-flex items-center justify-center rounded-3xl bg-[#D4AF37] px-8 py-4 font-bold text-black transition hover:bg-yellow-500"
               >
-                Download PDF
+                Download CV
               </a>
             </div>
           </section>
+
+          <div className="max-w-6xl mx-auto mt-12">
+            <GlobalCTA />
+          </div>
 
           <section className="grid gap-12 lg:grid-cols-[1.2fr_0.8fr]">
             <div className="space-y-8">
@@ -84,6 +118,19 @@ export default function Resume() {
               </div>
 
               <div>
+                <h2 className="text-4xl font-black text-gray-900 dark:text-white">Selected projects</h2>
+                <div className="mt-8 space-y-6">
+                  {selectedProjects.map((project) => (
+                    <div key={project.title} className="rounded-3xl border border-gray-200 dark:border-white/10 bg-white dark:bg-slate-950 p-8 shadow-lg">
+                      <p className="text-xs uppercase tracking-[0.3em] text-[#D4AF37]">{project.stack}</p>
+                      <h3 className="mt-2 text-2xl font-semibold text-gray-900 dark:text-white">{project.title}</h3>
+                      <p className="mt-4 text-gray-600 dark:text-gray-400">{project.summary}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div>
                 <h2 className="text-4xl font-black text-gray-900 dark:text-white">Skills</h2>
                 <div className="mt-8 grid gap-3 sm:grid-cols-2">
                   {skills.map((skill) => (
@@ -99,9 +146,9 @@ export default function Resume() {
           <section className="rounded-[2rem] border border-gray-200 dark:border-white/10 bg-slate-50 dark:bg-slate-950 p-12 shadow-2xl">
             <h2 className="text-4xl font-black text-gray-900 dark:text-white">Resume highlights</h2>
             <div className="mt-8 grid gap-6 md:grid-cols-3">
-              <Stat label="Years of experience" value="7+" />
-              <Stat label="Projects delivered" value="100+" />
-              <Stat label="Conversion boost" value="Avg +42%" />
+              <Stat label="Years of experience" value="5+" />
+              <Stat label="Production apps delivered" value="20+" />
+              <Stat label="Performance gain" value="42%" />
             </div>
           </section>
         </div>

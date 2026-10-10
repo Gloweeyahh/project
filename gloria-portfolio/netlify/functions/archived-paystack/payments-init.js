@@ -1,8 +1,5 @@
-// Netlify Function: POST /api/payments/init
-// Expected request body (from CheckoutPage): { email, amount, plan }
-// Response shape required by frontend:
-//   { authorization_url: string, reference: string }
-
+// Archived: Netlify Function: POST /api/payments/init
+// Original content moved to archive directory.
 import crypto from 'crypto';
 
 const PAYSTACK_SECRET_KEY = process.env.PAYSTACK_SECRET_KEY;
@@ -31,7 +28,6 @@ export default async function handler(event) {
       };
     }
 
-    // Paystack expects amount in kobo/cent-like smallest unit.
     const paystackAmount = Math.round(Number(amount) * 100);
 
     const metadata = {
@@ -80,4 +76,3 @@ export default async function handler(event) {
     };
   }
 }
-

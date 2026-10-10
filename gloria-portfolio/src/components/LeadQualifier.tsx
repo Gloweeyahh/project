@@ -1,5 +1,5 @@
 import { FormEvent, useState } from "react";
-import { sendEmail } from "../lib/sendEmail";
+import { sendFormEmail } from "../lib/sendEmail";
 
 export default function LeadQualifier() {
   const [businessType, setBusinessType] = useState("");
@@ -21,10 +21,14 @@ export default function LeadQualifier() {
     setLoading(true);
 
     try {
-      await sendEmail({
+      await sendFormEmail({
         subject: "New build request",
-        html: `<h1>New build request</h1><p><strong>Business type:</strong> ${businessType}</p><p><strong>Launch date:</strong> ${launchDate}</p><p><strong>Dream website:</strong><br/>${dreamWebsite}</p>`,
-      });
+        fields: {
+          businessType,
+          launchDate,
+          dreamWebsite,
+        },
+      })
 
       setSubmitted(true);
       setBusinessType("");

@@ -1,3 +1,7 @@
-// placeholder to ensure folder isn't treated as empty
-export { default } from '../payments-init.js';
+export default async function handler() {
+	return {
+		statusCode: 410,
+		body: JSON.stringify({ error: 'payments-init archived' }),
+	};
+}
 
