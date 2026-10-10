@@ -3,12 +3,17 @@ import { caseStudies } from '../data/caseStudies'
 import { projects } from '../data/projects'
 import { motion } from 'framer-motion'
 import BackButton from "../components/BackButton";
+import EcomCase from './EcomCase'
 
 export default function CaseStudyPage() {
   const { slug } = useParams()
 
   const caseData = caseStudies.find(c => c.slug === slug)
   const project = projects.find(p => p.slug === slug)
+
+  if (slug === 'ecommerce') {
+    return <EcomCase />
+  }
 
   if (!caseData) {
     return <div className="text-gray-900 dark:text-white p-20">Case not found</div>

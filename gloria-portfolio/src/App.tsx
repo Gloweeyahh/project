@@ -26,6 +26,7 @@ import ROIEstimator from "./pages/ROIEstimator";
 import Nav from "./components/Nav";
 import PageTransition from "./components/PageTransition";
 import FloatingWhatsApp from "./components/FloatingWhatsApp";
+import RouteScroll from "./components/RouteScroll";
 
 
 export default function App() {
@@ -33,6 +34,7 @@ export default function App() {
   return (
     <ThemeProvider>
       <Router>
+        <RouteScroll />
         <Nav />
         <AnimatePresence mode="wait">
           <Routes>

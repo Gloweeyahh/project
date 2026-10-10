@@ -25,13 +25,15 @@ export default function Nav() {
   }, []);
 
   return (
-    <nav className={`fixed top-0 left-0 w-full z-50 flex justify-between items-center px-4 md:px-10 transition-all duration-300 ${isScrolled ? "py-3 bg-slate-50/95 dark:bg-slate-950/95 border-b border-gray-200/50 dark:border-white/10 shadow-xl" : "py-5 bg-slate-50/80 dark:bg-slate-950/80 border-b border-transparent"}`}>
+    <>
+    <a className="skip-link" href="#main-content">Skip to content</a>
+    <nav aria-label="Main navigation" className={`fixed top-0 left-0 w-full z-50 flex justify-between items-center px-4 md:px-10 transition-all duration-300 ${isScrolled ? "py-3 bg-slate-50/95 dark:bg-slate-950/95 border-b border-gray-200/50 dark:border-white/10 shadow-xl" : "py-5 bg-slate-50/80 dark:bg-slate-950/80 border-b border-transparent"}`}>
       <Link to="/" className="text-black dark:text-white font-bold tracking-[0.3em] text-sm md:text-base hover:text-yellow-400 transition-colors">
         GLORIA EMEKA
       </Link>
 
       <div className="flex items-center gap-4 md:gap-8">
-        <div className="hidden md:flex gap-8 items-center">
+        <div className="hidden xl:flex gap-6 items-center">
           {links.map((link) => (
             <motion.div
               key={link.name}
@@ -48,6 +50,6 @@ export default function Nav() {
         <MobileNav />
       </div>
     </nav>
+    </>
   );
 }
-

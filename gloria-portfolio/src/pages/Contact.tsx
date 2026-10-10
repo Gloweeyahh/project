@@ -19,12 +19,16 @@ export default function Contact() {
   const [loading, setLoading] = useState(false);
   const [prefillNote, setPrefillNote] = useState("");
   const location = useLocation();
+  const isHiring = new URLSearchParams(location.search).get("intent") === "hiring";
 
   useEffect(() => {
     const params = new URLSearchParams(location.search);
     const plan = params.get("plan");
 
-    if (plan) {
+    if (params.get("intent") === "hiring") {
+      setMessage("Hi Gloria, I'd like to discuss a front-end developer / UI engineer role.\n\nCompany:\nRole:\nLocation or remote arrangement:\nNext steps:");
+      setPrefillNote("Share the role and your hiring process below.");
+    } else if (plan) {
       const description = packagePrefill[plan] || "Please share pricing and next steps for this tier.";
       setMessage(`I'm interested in the ${plan} package. ${description}`);
       setPrefillNote(`Your message is prefilled for the ${plan} package.`);
@@ -51,7 +55,7 @@ export default function Contact() {
 
     try {
       await sendEmail({
-        subject: "New contact request",
+        subject: isHiring ? "New hiring inquiry" : "New contact request",
         html: `<h1>New contact request</h1><p><strong>Name:</strong> ${name}</p><p><strong>Email:</strong> ${email}</p><p><strong>Message:</strong><br/>${message}</p>`,
       });
 
@@ -70,7 +74,7 @@ export default function Contact() {
 
   return (
     <>
-      <main className="min-h-screen bg-white dark:bg-black text-gray-900 dark:text-white px-6 py-24 lg:px-10">
+      <main id="main-content" className="min-h-screen bg-white dark:bg-black text-gray-900 dark:text-white px-6 py-24 lg:px-10">
         <div className="max-w-7xl mx-auto">
           <div className="mb-10">
             <BackButton />
@@ -81,11 +85,10 @@ export default function Contact() {
               <div>
                 <p className="text-sm uppercase tracking-[0.35em] text-[#D4AF37]">Contact</p>
                 <h1 className="mt-4 text-5xl font-black text-gray-900 dark:text-white">
-                  Start your premium website project.
+                  {isHiring ? "Let’s discuss your open role." : "Start your premium website project."}
                 </h1>
                 <p className="mt-6 text-lg text-gray-600 dark:text-gray-400 max-w-2xl">
-                  Use this form to send a direct project brief, ask about strategy calls,
-                  or request a proposal for high-conversion digital experiences.
+                  {isHiring ? "Share your company, the role, and what you’re looking for in your next teammate. Use the form to start a direct conversation with Gloria." : "Use this form to send a direct project brief, ask about strategy calls, or request a proposal for high-conversion digital experiences."}
                 </p>
               </div>
 
