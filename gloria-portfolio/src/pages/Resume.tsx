@@ -6,32 +6,32 @@ import { Link } from "react-router-dom";
 const experience = [
 
   {
-    period: "2023 - Present",
-    role: "Founder & Lead Designer",
-    company: "Gloria Emeka Studio",
-    details: "Creating premium websites for founders, educators, and fintech brands with a focus on conversion-led UX."
+    period: "July 2025 – February 2026",
+    role: "Web Developer",
+    company: "Peace for Humanity Foundation",
+    details: "Developed and maintained responsive interfaces, CMS workflows, contact forms, and email functionality. Improved technical SEO and managed hosting, deployment, analytics, and ongoing maintenance."
   },
   {
-    period: "2021 - 2023",
-    role: "Senior Frontend Engineer",
-    company: "Growth Labs",
-    details: "Built design systems and conversion-focused experiences for SaaS, commerce, and education products."
+    period: "August 2024 – Present",
+    role: "Freelance Web Developer",
+    company: "Independent",
+    details: "Built and maintained approximately 15 websites across client, freelance, and independent projects. Delivered responsive interfaces, API integrations, authentication, payment services, debugging, deployment, and ongoing maintenance."
   },
   {
-    period: "2019 - 2021",
-    role: "UI / UX Designer",
-    company: "Studio X",
-    details: "Delivered high-converting landing pages and product launches for B2B and digital creators."
+    period: "February 2019 – December 2021",
+    role: "Graphics Designer",
+    company: "Steelbase Resources Limited",
+    details: "Created brand assets and marketing materials from briefs and feedback, with a focus on visual hierarchy, typography, spacing, and consistent presentation."
   }
 ];
 
 const skills = [
-  "React / TypeScript",
-  "Tailwind CSS / CSS-in-JS",
-  "Conversion optimization",
-  "Motion & interaction design",
-  "Design systems",
-  "Accessibility audit"
+  "React / Next.js / TypeScript / JavaScript",
+  "HTML5 / CSS3 / Tailwind CSS / Bootstrap",
+  "Responsive design / Accessibility fundamentals",
+  "REST APIs / Forms / Authentication / Payments",
+  "Git / GitHub / Debugging / Testing",
+  "SEO / Core Web Vitals / Deployment"
 ];
 
 export default function Resume() {
@@ -49,18 +49,20 @@ export default function Resume() {
                 <p className="text-sm uppercase tracking-[0.35em] text-[#D4AF37]">Resume</p>
                 <h1 className="mt-4 text-6xl font-black text-gray-900 dark:text-white">Gloria Emeka</h1>
                 <p className="mt-6 text-lg text-gray-600 dark:text-gray-300 max-w-3xl">
-                  Conversion-led digital product design, frontend engineering, and premium website strategy
-                  for founders and high-growth brands.
+                  Frontend developer with 3+ years of web development experience and 2+ years working with React,
+                  building responsive, user-focused websites and web applications with TypeScript, JavaScript,
+                  Next.js, Vite, and Tailwind CSS.
                 </p>
               </div>
 
-              <button
-                type="button"
-                onClick={() => window.print()}
+              <a
+                href="/resume/Gloria-Emeka-Resume.pdf"
+                download="Gloria-Emeka-Resume.pdf"
+                type="application/pdf"
                 className="no-print inline-flex items-center justify-center rounded-3xl bg-[#D4AF37] px-8 py-4 font-bold text-black transition hover:bg-yellow-500"
               >
-                Print / Save as PDF
-              </button>
+                Download resume (PDF)
+              </a>
             </div>
           </section>
 

@@ -3,6 +3,13 @@
   publish = "dist"
   functions = "netlify/functions"
 
+[[headers]]
+  for = "/resume/Gloria-Emeka-Resume.pdf"
+  [headers.values]
+    Content-Type = "application/pdf"
+    Content-Disposition = 'attachment; filename="Gloria-Emeka-Resume.pdf"'
+    X-Content-Type-Options = "nosniff"
+
 [[redirects]]
   from = "/api/*"
   to = "/.netlify/functions/:splat"
