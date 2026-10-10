@@ -30,14 +30,14 @@ export default function RecruiterMode() {
 
           <h2 className="text-2xl font-bold mt-8 mb-3">Key Results</h2>
           <ul className="list-disc ml-6">
-            <li>+67% Fintech Conversions</li>
-            <li>+32% E-commerce AOV</li>
-            <li>100 Lighthouse Performance</li>
+            <li>3+ years of hands-on frontend experience</li>
+            <li>20+ delivered web applications and client projects</li>
+            <li>42% fewer Lighthouse performance issues across client projects</li>
           </ul>
 
-          <button className="mt-10 px-6 py-3 bg-black dark:bg-yellow-400 text-white dark:text-black rounded hover:bg-gray-800 dark:hover:bg-yellow-500 transition font-semibold">
-            Download CV
-          </button>
+          <a href="/Gloria_Emeka_CV.pdf" download="Gloria_Emeka_CV.pdf" className="inline-flex mt-10 px-6 py-3 bg-black dark:bg-yellow-400 text-white dark:text-black rounded hover:bg-gray-800 dark:hover:bg-yellow-500 transition font-semibold">
+            Download CV (PDF)
+          </a>
         </div>
       )}
     </div>

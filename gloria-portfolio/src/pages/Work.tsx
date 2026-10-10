@@ -15,7 +15,7 @@ export default function Work() {
   const navigate = useNavigate();
 
   const categories = Array.from(new Set(projects.map((p) => p.category)));
-  const orderedCategories = ["product", "production", ...categories.filter((category) => category !== "product" && category !== "production")];
+  const orderedCategories = ["product", "e-commerce", ...categories.filter((category) => category !== "product" && category !== "e-commerce")];
   const filters = ["all", ...orderedCategories];
   const filteredProjects = filter === "all" ? projects : projects.filter((project) => project.category === filter);
 
@@ -293,4 +293,3 @@ export default function Work() {
     </>
   );
 }
-

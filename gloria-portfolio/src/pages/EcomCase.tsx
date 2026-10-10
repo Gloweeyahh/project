@@ -20,7 +20,7 @@ export default function EcomCase() {
           <div>
             <p className="text-sm uppercase tracking-[0.35em] text-[#D4AF37]">E-commerce Case Study</p>
             <h1 className="mt-4 text-6xl font-black text-gray-900 dark:text-white">{caseData.title}</h1>
-            <p className="mt-6 text-lg text-gray-600 dark:text-gray-400 max-w-3xl">{caseData.solution}. The project was built to increase average order value, trust, and checkout momentum for online shoppers.</p>
+            <p className="mt-6 text-lg text-gray-600 dark:text-gray-400 max-w-3xl">{caseData.solution}. The project focuses on clear product choices and a straightforward mobile shopping experience.</p>
             <p className="mt-4 text-sm text-gray-500 dark:text-gray-400 italic max-w-3xl">{caseData.disclaimer}</p>
           </div>
 
